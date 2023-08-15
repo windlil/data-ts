@@ -1,10 +1,10 @@
 /*
   使用数组为基础来实现栈结构
 */
+import {Stack, TAndUndefined} from "./type"
 
-type PopResult<T> = T | undefined 
-
-class ArrayStack<T = any> {
+class ArrayStack<T = any> implements Stack<T> {
+  
   private stack: T[] = []
 
   // 压栈
@@ -13,12 +13,12 @@ class ArrayStack<T = any> {
   }
 
   // 出栈，并返回被移除的元素
-  pop(): PopResult<T> {
+  pop(): TAndUndefined<T> {
     return this.stack.pop()
   }
 
   // 返回栈顶元素，不对元素进行任何操作
-  peek(): T {
+  peek(): TAndUndefined<T> {
     const length: number = this.stack.length
     return this.stack[length - 1]
   }
@@ -47,3 +47,5 @@ console.log(s1.peek())      // mike
 console.log(s1.pop())       // mike
 console.log(s1.size())      // 2
 console.log(s1.isEmpty())   // false
+
+export {}
