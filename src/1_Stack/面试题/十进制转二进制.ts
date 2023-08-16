@@ -4,7 +4,7 @@ import { ArrayStack } from "../ArrayStack"
   写一个能够将十进制数字转为二进制数字的函数
 */
 
-function decimalToBinary(dec: number) {
+export function decimalToBinary(dec: number) {
   const stack = new ArrayStack<number>()
   let result = ''
 
@@ -18,7 +18,6 @@ function decimalToBinary(dec: number) {
   return result
 }
 
-// console.log(decimalToBinary(35))  // 100011
 
 /*
   解题思路：

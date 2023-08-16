@@ -8,7 +8,7 @@ import { ArrayStack } from '../ArrayStack'
   isValid("[{()}]") true
 */
 
-function isValid(str: string): boolean {
+export function isValid(str: string): boolean {
   const stack = new ArrayStack<string>()
 
   for (let i = 0; i < str.length; i++) {
@@ -28,7 +28,3 @@ function isValid(str: string): boolean {
   return stack.isEmpty()
 }
 
-console.log(isValid("(){}[]"))  // true
-console.log(isValid("({)}[]"))  // false [')', '}']
-console.log(isValid("{()}[]") ) // true
-console.log(isValid("[{()}]"))  // true
