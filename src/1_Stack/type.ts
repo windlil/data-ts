@@ -13,8 +13,8 @@ export interface Stack<T = any> {
   
   // 判断是否为空栈
   isEmpty(): boolean
-  
+
   // 返回栈内元素个数
-  size(): number
+  get size(): number
 }
 

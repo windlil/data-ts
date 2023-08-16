@@ -26,7 +26,7 @@ export class ArrayStack<T = any> implements Stack<T> {
     return length === 0
   }
 
-  size(): number {
+  get size(): number {
     return this.stack.length
   }
 

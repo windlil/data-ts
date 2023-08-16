@@ -15,5 +15,5 @@ export interface Queue<T> {
   isEmpty(): boolean
 
   // 队列大小
-  size(): number
+  get size(): number
 }

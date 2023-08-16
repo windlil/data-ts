@@ -20,7 +20,7 @@ export class ArrayQueue<T> implements Queue<T>{
     return this.queue.length === 0
   }
 
-  size(): number {
+  get size(): number {
     return this.queue.length
   }
 }
