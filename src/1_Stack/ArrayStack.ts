@@ -2,7 +2,7 @@
   使用数组为基础来实现栈结构
 */
 import type {Stack} from "./type"
-import type { TAndUndefined } from '../types/type'
+import type { TAndUndefined } from '../../types/utils'
 
 export class ArrayStack<T = any> implements Stack<T> {
   

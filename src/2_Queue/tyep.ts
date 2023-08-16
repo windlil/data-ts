@@ -1,4 +1,4 @@
-import type { TAndUndefined } from "../types/type"
+import type { TAndUndefined } from "../../types/utils"
 
 export interface Queue<T> {
 

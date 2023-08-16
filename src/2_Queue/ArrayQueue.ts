@@ -1,5 +1,5 @@
 import type { Queue } from './tyep'
-import type { TAndUndefined } from '../types/type'
+import type { TAndUndefined } from '../../types/utils'
 
 export class ArrayQueue<T> implements Queue<T>{
   private queue: T[] = []

@@ -1,4 +1,4 @@
-import { TAndUndefined } from '../types/type'
+import { TAndUndefined } from '../../types/utils'
 
 export interface Stack<T = any> {
   // 压栈

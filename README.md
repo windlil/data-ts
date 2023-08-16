@@ -1,6 +1,6 @@
 # Typescript 实现常见数据结构与算法
 
-涵盖Typescript语法，vitest单元测试
+涵盖Typescript语法，vitest单元测试。
 
 ## 1. Stack 栈
 面试题：
