@@ -1,0 +1,1 @@
+export type TAndUndefined<T> = T | undefined 
