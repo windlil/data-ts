@@ -23,11 +23,28 @@ export class LinkedList<T> {
         current = current.next
       }      current.next = node
     }
-
     this._size++
   }
 
   get size() {
     return this._size
   }
+
+  travers(sep: string = '') {
+    let res = ''
+    let current = this.head
+  
+    while(current) {
+      res += current.value + sep
+      current = current.next
+    }
+
+    console.log(res)
+  }
 }
+
+const linked = new LinkedList()
+linked.append('a')
+linked.append('b')
+linked.append('c')
+linked.travers()
