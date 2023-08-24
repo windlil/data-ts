@@ -41,10 +41,45 @@ export class LinkedList<T> {
 
     console.log(res)
   }
+
+  insert(value: T, position: number) {
+    if (position < 0 || position > this._size) return false
+
+    const node = new LinkedNode(value)
+
+    if (this.size === 0) {
+      this.append(value)
+      return true
+    }
+
+    if (position === 0) {
+      node.next = this.head
+      if (this.head) {
+        this.head = node
+      }
+    } else {
+      let i = 0
+      let current = this.head
+      while(i !== position - 1) {
+        if (current?.next) {
+          current = current.next
+        }
+        i++
+      }
+      const next = current?.next
+      node.next = next
+      if (current) {
+        current.next = node
+      }
+    }
+
+    return true
+  }
 }
 
 const linked = new LinkedList()
 linked.append('a')
 linked.append('b')
 linked.append('c')
+linked.insert('6', 3)
 linked.travers()
