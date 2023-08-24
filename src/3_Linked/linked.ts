@@ -21,7 +21,8 @@ export class LinkedList<T> {
       let current = this.head
       while(current.next) {
         current = current.next
-      }      current.next = node
+      }
+      current.next = node
     }
     this._size++
   }
@@ -60,10 +61,8 @@ export class LinkedList<T> {
     } else {
       let i = 0
       let current = this.head
-      while(i !== position - 1) {
-        if (current?.next) {
-          current = current.next
-        }
+      while(i !== position - 1 && current) {
+        current = current.next
         i++
       }
       const next = current?.next
@@ -100,6 +99,19 @@ export class LinkedList<T> {
 
     return current?.value || null
   }
+
+  getAt(position: number) {
+    if (position < 0 || position > this.size) return false
+
+    let current = this.head
+    let index = 0
+
+    while (index++ < position && current) {
+      current = current.next
+    }
+
+    return current!.value ?? null
+  }
 }
 
 const linked = new LinkedList()
@@ -108,4 +120,5 @@ linked.append('b')
 linked.append('c')
 linked.insert('6', 3)
 console.log(linked.removeAt(1))
+console.log(linked.getAt(1))
 linked.travers()
