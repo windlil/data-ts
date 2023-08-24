@@ -75,6 +75,31 @@ export class LinkedList<T> {
 
     return true
   }
+
+  removeAt(position: number) {
+    if (position < 0 || position > this.size) return false
+
+    if (this.size === 0) {
+      this.head = null
+    }
+
+    let current = this.head
+    if (position === 0 ){
+      this.head = current?.next
+    } else {
+      let previous
+      let i = 0
+
+      while(i++ < position && current) {
+        previous = current
+        current = current.next
+      }
+
+      previous!.next = current?.next || null
+    }
+
+    return current?.value || null
+  }
 }
 
 const linked = new LinkedList()
@@ -82,4 +107,5 @@ linked.append('a')
 linked.append('b')
 linked.append('c')
 linked.insert('6', 3)
+console.log(linked.removeAt(1))
 linked.travers()
