@@ -44,7 +44,7 @@ export class LinkedList<T> {
   }
 
   insert(value: T, position: number) {
-    if (position < 0 || position > this._size) return false
+    isTrueRange(this.size, position)
 
     const node = new LinkedNode(value)
 
@@ -76,7 +76,7 @@ export class LinkedList<T> {
   }
 
   removeAt(position: number) {
-    if (position < 0 || position > this.size) return false
+    isTrueRange(this.size, position)
 
     if (this.size === 0) {
       this.head = null
@@ -101,7 +101,7 @@ export class LinkedList<T> {
   }
 
   getAt(position: number) {
-    if (position < 0 || position > this.size) return false
+    isTrueRange(this.size, position)
 
     let current = this.head
     let index = 0
@@ -112,13 +112,40 @@ export class LinkedList<T> {
 
     return current!.value ?? null
   }
+
+  update(value: T, position: number) {
+    isTrueRange(this.size, position)
+
+    if (this.size === 0) {
+      const node = new LinkedNode(value)
+      this.head = node
+    }
+
+    let current = this.head
+    let index = 0
+
+    while(index++ < position && current) {
+      current = current.next
+    }
+
+    current!.value = value
+
+    return true
+  }
+}
+
+function isTrueRange(size: number, position: number): boolean {
+  if (position < 0 || position > size) return false
+  return true
 }
 
 const linked = new LinkedList()
 linked.append('a')
 linked.append('b')
 linked.append('c')
+linked.travers('->')
 linked.insert('6', 3)
 console.log(linked.removeAt(1))
 console.log(linked.getAt(1))
-linked.travers()
+linked.update('666', 0)
+linked.travers('->')
