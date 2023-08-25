@@ -133,14 +133,21 @@ export class LinkedList<T> {
     return true
   }
 
-  indefOf(value: T) {
+  indefOf(value: T): number {
     let current = this.head
     let index = 0
 
     while(current) {
       if (current.value === value) return index
+      current = current.next
       index++
     }
+    return index
+  }
+
+  remove(value: T) {
+    const index = this.indefOf(value)
+    return this.removeAt(index)
   }
 }
 
@@ -159,4 +166,5 @@ console.log(linked.removeAt(1))
 console.log(linked.getAt(1))
 linked.update('666', 0)
 console.log(linked.indefOf('666'))
+linked.remove('666')
 linked.travers('->')
