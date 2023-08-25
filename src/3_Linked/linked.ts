@@ -105,7 +105,7 @@ export class LinkedList<T> {
 
     let current = this.head
     let index = 0
-
+    
     while (index++ < position && current) {
       current = current.next
     }
