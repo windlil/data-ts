@@ -132,6 +132,16 @@ export class LinkedList<T> {
 
     return true
   }
+
+  indefOf(value: T) {
+    let current = this.head
+    let index = 0
+
+    while(current) {
+      if (current.value === value) return index
+      index++
+    }
+  }
 }
 
 function isTrueRange(size: number, position: number): boolean {
@@ -148,4 +158,5 @@ linked.insert('6', 3)
 console.log(linked.removeAt(1))
 console.log(linked.getAt(1))
 linked.update('666', 0)
+console.log(linked.indefOf('666'))
 linked.travers('->')
