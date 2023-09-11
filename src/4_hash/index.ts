@@ -14,10 +14,6 @@ class hashTable<T = any> {
   private length: number = 7
   private count: number = 0
 
-  constructor() {
-
-  }
-
   private getIndex(key: string, max: number = this.length) {
     const length = key.length
     let hashCode = 0
@@ -46,6 +42,9 @@ class hashTable<T = any> {
   }
 
   private resize(newLength: number) {
+    while(!isPrime(newLength)) newLength++
+    if (newLength < 7) newLength = 7
+    
     this.length = newLength
     const oldStorage = this.storage
     this.storage = []
