@@ -96,6 +96,22 @@ class Tree<T = number> {
         console.log(node.value)
       }
     }
+
+    levelOrderTraverse() {
+      if (!this.root) return
+      const queue: TreeNode<T>[] = [this.root]
+
+      while(queue.length) {
+        const current = queue.shift()!
+        console.log(current.value)
+        if (current?.left) {
+          queue.push(current.left)
+        }
+        if (current?.right) {
+          queue.push(current.right)
+        }
+      }
+    }
 }
 
 const tree = new Tree()
@@ -110,4 +126,4 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(16)
 tree.print()
-tree.inOrderTraverse()
+tree.levelOrderTraverse()
