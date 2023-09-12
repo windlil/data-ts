@@ -97,6 +97,7 @@ class Tree<T = number> {
       }
     }
 
+    // 层序遍历
     levelOrderTraverse() {
       if (!this.root) return
       const queue: TreeNode<T>[] = [this.root]
@@ -112,6 +113,24 @@ class Tree<T = number> {
         }
       }
     }
+
+    getMaxValue(): T | undefined {
+      let current = this.root
+      if (!current) return
+      while(current.right) {
+        current = current.right
+      }
+      return current.value 
+    }
+
+    getMinValue(): T | undefined {
+      let current = this.root
+      if (!current) return
+      while(current.left) {
+        current = current.left
+      }
+      return current.value 
+    }
 }
 
 const tree = new Tree()
@@ -126,4 +145,4 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(16)
 tree.print()
-tree.levelOrderTraverse()
+console.log(tree.getMaxValue(), tree.getMinValue())
