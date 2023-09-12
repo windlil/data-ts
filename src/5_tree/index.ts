@@ -57,6 +57,19 @@ class Tree<T = number> {
       }
     }
   }
+
+  // 先序遍历
+  preOrderTraverse() {
+    this.preOrderTraverseNode(this.root)
+  }
+
+  private preOrderTraverseNode(node: TreeNode<T> | null) {
+    if (node) {
+      console.log(node.value)
+      this.preOrderTraverseNode(node.left)
+      this.preOrderTraverseNode(node.right)
+    }
+  }
 }
 
 const tree = new Tree()
@@ -65,4 +78,10 @@ tree.insert(7)
 tree.insert(15)
 tree.insert(5)
 tree.insert(3)
+tree.insert(9)
+tree.insert(10)
+tree.insert(6)
+tree.insert(12)
+tree.insert(16)
 tree.print()
+tree.preOrderTraverse()
