@@ -83,6 +83,19 @@ class Tree<T = number> {
       this.inOrderTraverseNode(node.right)
     }
   }
+
+    // 后序遍历
+    postOrderTraverse() {
+      this.postOrderTraverseNode(this.root)
+    }
+  
+    private postOrderTraverseNode(node: TreeNode<T> | null) {
+      if (node) {
+        this.inOrderTraverseNode(node.left)
+        this.inOrderTraverseNode(node.right)
+        console.log(node.value)
+      }
+    }
 }
 
 const tree = new Tree()
