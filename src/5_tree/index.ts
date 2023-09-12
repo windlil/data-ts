@@ -70,6 +70,19 @@ class Tree<T = number> {
       this.preOrderTraverseNode(node.right)
     }
   }
+
+  // 中序遍历
+  inOrderTraverse() {
+    this.inOrderTraverseNode(this.root)
+  }
+
+  private inOrderTraverseNode(node: TreeNode<T> | null) {
+    if (node) {
+      this.inOrderTraverseNode(node.left)
+      console.log(node.value)
+      this.inOrderTraverseNode(node.right)
+    }
+  }
 }
 
 const tree = new Tree()
@@ -84,4 +97,4 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(16)
 tree.print()
-tree.preOrderTraverse()
+tree.inOrderTraverse()
