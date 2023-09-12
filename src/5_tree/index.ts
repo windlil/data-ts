@@ -131,6 +131,22 @@ class Tree<T = number> {
       }
       return current.value 
     }
+
+    isValueExist(value: T): boolean {
+      if (!this.root) return false
+
+      let current: TreeNode<T> | null = this.root
+      while(current) {
+        if (current.value === value) return true
+        if (current.value > value) {
+          current = current.left
+        } else {
+          current = current.right
+        }
+      }
+
+      return false
+    }
 }
 
 const tree = new Tree()
@@ -145,4 +161,4 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(16)
 tree.print()
-console.log(tree.getMaxValue(), tree.getMinValue())
+console.log(tree.isValueExist(2))
