@@ -132,13 +132,17 @@ class Tree<T = number> {
       return current.value 
     }
 
-    getMinValue(): T | undefined {
-      let current = this.root
+    getMinValue(root?: TreeNode<T>): any {
+      let current = root ?? this.root
       if (!current) return
       while(current.left) {
+        let pre = current
         current = current.left
+        if (current) {
+          current.parent = pre
+        }
       }
-      return current.value 
+      return current 
     }
 
     search(value: T): boolean {
@@ -173,7 +177,7 @@ class Tree<T = number> {
       if (!current) return false
       current.parent = parent
 
-      // 删除叶子结点的情况
+      // 删除叶子节点的情况
       if (current.left === null && current.right === null) {
         if (this.root === current) {
           this.root = null
@@ -181,6 +185,46 @@ class Tree<T = number> {
           current.parent.left = null
         } else if (current.isRight() && current.parent) {
           current.parent.right = null
+        }
+      }
+
+      const currentLeft = current.left
+      const currentRight = current.right
+
+      // 删除有两个子节点的情况
+      // 找出该节点的左子树的最大节点，前驱节点。或者找出该节点右子树的最小节点，称为后继节点
+      if (currentLeft && currentRight) {
+        const minValueInRight = this.getMinValue(currentRight)
+
+
+        if (current.right !== minValueInRight) {
+          minValueInRight.parent.left = minValueInRight.right
+          minValueInRight.right = current.right
+        }
+        minValueInRight.left = current.left
+
+        if (current === this.root) {
+          this.root = minValueInRight
+        } else if (current.isLeft()) {
+          current.parent!.left = minValueInRight
+        } else {
+          current.parent!.right = minValueInRight
+        }
+        return
+      }
+
+      // 删除一个子节点的情况
+      if (currentLeft || currentRight) {
+        const parent = current.parent
+        if (current === this.root) {
+          current = currentLeft ?? currentRight
+        }
+        if (currentLeft && parent) {
+          parent.left = currentLeft
+          currentLeft.parent = parent
+        } else {
+          parent!.right = currentRight
+          currentRight!.parent = parent
         }
       }
     }
@@ -194,9 +238,11 @@ tree.insert(5)
 tree.insert(3)
 tree.insert(9)
 tree.insert(10)
+tree.insert(14)
 tree.insert(6)
 tree.insert(12)
 tree.insert(16)
+tree.insert(8)
 tree.print()
-tree.remove(3)
+tree.remove(15)
 tree.print()
