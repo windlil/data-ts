@@ -15,10 +15,19 @@ import { btPrint } from 'hy-algokit'
 class TreeNode<T = any> {
   left: TreeNode<T> | null = null
   right: TreeNode<T> | null = null
+  parent: TreeNode<T> | null = null
   value: T
 
   constructor(newValue: T) {
     this.value = newValue
+  }
+
+  isLeft():boolean {
+    return !!(this === this.parent?.left && this.parent)
+  }
+
+  isRight():boolean {
+    return !!(this === this.parent?.right && this.parent)
   }
 }
 
@@ -132,7 +141,7 @@ class Tree<T = number> {
       return current.value 
     }
 
-    isValueExist(value: T): boolean {
+    search(value: T): boolean {
       if (!this.root) return false
 
       let current: TreeNode<T> | null = this.root
@@ -146,6 +155,34 @@ class Tree<T = number> {
       }
 
       return false
+    }
+
+    remove(value: T): any {
+      let current = this.root
+      let parent = null
+      if (!current) return false
+      while (current) {
+        if (current.value === value) break
+        parent = current
+        if (current.value > value) {
+          current = current.left
+        } else {
+          current = current.right
+        }
+      }
+      if (!current) return false
+      current.parent = parent
+
+      // 删除叶子结点的情况
+      if (current.left === null && current.right === null) {
+        if (this.root === current) {
+          this.root = null
+        } else if (current.isLeft() && current.parent) {
+          current.parent.left = null
+        } else if (current.isRight() && current.parent) {
+          current.parent.right = null
+        }
+      }
     }
 }
 
@@ -161,4 +198,5 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(16)
 tree.print()
-console.log(tree.isValueExist(2))
+tree.remove(3)
+tree.print()
