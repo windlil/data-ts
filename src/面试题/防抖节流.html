@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">防抖</button>
+  <button id="btn2">节流</button>
+  <script>
+    const btn = document.querySelector('#btn')
+    const btn2 = document.querySelector('#btn2')
+    function debounce(fn, wait) {
+  let timer;
+  return function () {
+    let _this = this;
+    let args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      fn.apply(_this, args);
+    }, wait);
+  };
+}
+    function throttle(fn, timeout) {
+      let time
+      return (...args) => {
+        
+      }
+    }
+    let bo = 0
+    const fn = debounce(function(bo) {
+
+
+    }, 1000)
+    // btn.onclick  = fn(0)
+
+
+    const deepclone = (target, newmap) =>{
+      const map = newmap ?? new WeakMap()
+    // 基本类型直接返回
+      if(typeof target !== 'object' || target === null) return target;
+      // 函数 正则 日期 ES6新对象， 执行构造
+      const constructor = target.constructor;
+      if (/^(Function|RegExp|Date|Map|Set)$/i.test(constructor.name)) return new constructor(target);
+      // map 标记每一个出现过的属性，避免循环引用
+      if(map.get(target)) return map.get(target);
+      map.set(target, true);
+      const cloneTarget = Array.isArray(target) ? [] : {};
+      for(const prop in target){
+        cloneTarget[prop] = deepclone(target[prop], map);
+      }
+      return cloneTarget;
+    }
+
+    const func = () => {
+
+    }
+
+
+    function cloneDeep(target, newmap) {
+      const map = newmap ?? new WeakMap()
+      if (typeof target !== 'object' || target === null) return target
+      const constructor = target.constructor
+      const reg = new RegExp(/^(Function|Date|RegExp|Set|Map)$/i)
+      if (reg.test(constructor.name)) return new constructor(target)
+      if(map.get(target)) return map.get(target);
+      map.set(target, true);
+
+      const newArrOrObj = Array.isArray(target) ? [] : {}
+      for (const item in target) {
+        newArrOrObj[item] = cloneDeep(target[item], map)
+      }
+      return newArrOrObj
+    }
+
+    const a = {
+      a: 'a'
+    }
+    const b = cloneDeep(a)
+
+
+    var c
+    console.log(c)
+    c = 10
+    console.log(c)
+  </script>
+</body>
+</html>
