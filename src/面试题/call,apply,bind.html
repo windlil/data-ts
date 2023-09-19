@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const a = 1
+    function test(b, a, c) {
+      console.log(this.a, b, a, c)
+    }
+    const obj = {
+      a: 0
+    }
+
+    Function.prototype._call = function (context, ...args) {
+      if (!context) context = window
+      context._fn = this
+
+      context._fn(...args)
+      delete context.fn
+    }
+
+    Function.prototype._apply = function (context, args) {
+      if (!context) context = window
+      context._fn = this
+
+      context._fn(...args)
+      delete context.fn
+    }
+
+    Function.prototype._bind = function(context, ...args) {
+      context = ((context === undefined) || (context === null)) ? window : context
+      const fn = this
+
+      return function(...args2) {
+        context._fn = fn
+        const result = context._fn(...[...args, ...args2])
+        delete context._fn
+        return result
+      }
+    }
+
+    test._call(obj, 10)
+
+    test._apply(obj, [10, 20, 30])
+    
+    test._bind(obj, 10)(20, 30)
+  </script>
+</body>
+</html>
