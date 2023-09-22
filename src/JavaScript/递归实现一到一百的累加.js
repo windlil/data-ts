@@ -1,6 +1,5 @@
-function sum(number = 1) {
-  if (number === 100) return 100
-  return number + sum(number + 1)
+function sum(min = 0, max = 100) {
+  return min === max ? min : min + sum(min + 1)
 }
 
 console.log(sum())
