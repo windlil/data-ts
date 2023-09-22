@@ -18,7 +18,7 @@ function uniArr3(arr = []) {
       return pre
     }
   }, [])
-}
+} 
 
 console.log(uniArr(arr))
 console.log(uniArr2(arr))
