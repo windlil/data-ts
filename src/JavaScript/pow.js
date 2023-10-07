@@ -1,6 +1,6 @@
 function mySqrt(x) {
   let left = 0;
-  // 直接干掉 x 的一半，减小范围
+
   let right = x
 
   // 搜索区间为 [left, right]
