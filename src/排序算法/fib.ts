@@ -22,4 +22,16 @@ function fib(number: number) {
   return meno[number]
 }
 
+function fib2(n: number) {
+  if (n <= 1) return n
+  let pre = 0
+  let cur = 1
+  for (let i = 2; i <= n; i++) {
+    const result = pre + cur
+    pre = cur
+    cur = result
+  }
+  return cur
+}
+
 console.log(fib(10))
