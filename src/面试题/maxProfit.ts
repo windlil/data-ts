@@ -10,4 +10,3 @@ function maxProfit(arr: number[]) {
   return dp[arr.length - 1]
 }
 
-console.log(maxProfit([7, 1, 5, 3, 6, 0, 4]))
